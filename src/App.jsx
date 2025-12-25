@@ -1,7 +1,7 @@
 import {Routes,Route} from 'react-router'
 import {Homepages} from './pages/Homepages'
 import './App.css'
-
+import { Checkout } from './pages/Checkout'
 function App() {
 
 
@@ -9,7 +9,7 @@ function App() {
     <>
     <Routes>
       <Route path='/' element={<Homepages />} />
-      <Route path='007' element={<div><p>this is a new page</p></div>} />
+      <Route path='checkout' element={<Checkout />} />
     </Routes>
     </>
   )
