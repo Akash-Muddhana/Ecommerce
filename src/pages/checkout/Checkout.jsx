@@ -6,23 +6,22 @@ import { useState, useEffect } from "react";
 import { PaymentSummary } from "./paymentSummary.jsx";
 import axios from "axios";
 import { Link } from "react-router";
-export function Checkout({ cart }) {
+export function Checkout({ cart, loadcart }) {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
   useEffect(() => {
-    const  checkoutData=async()=>{
+    const checkoutData = async () => {
+      let response = await axios.get(
+        "/api/delivery-options?expand=estimatedDeliveryTime"
+      );
 
-    
-    let response=await axios
-      .get("/api/delivery-options?expand=estimatedDeliveryTime")
-    
-        setDeliveryOptions(response.data);
-      
-   response= await axios.get("/api/payment-summary")
+      setDeliveryOptions(response.data);
+
+      response = await axios.get("/api/payment-summary");
       setPaymentSummary(response.data);
-    }
-    checkoutData()
-  }, []);
+    };
+    checkoutData();
+  }, [cart]);
   return (
     <>
       <title>Checkout</title>
@@ -32,7 +31,11 @@ export function Checkout({ cart }) {
         <div className="page-title">Review your order</div>
 
         <div className="checkout-grid">
-         <OrderSummary deliveryOptions={deliveryOptions} cart={cart}/>
+          <OrderSummary
+            deliveryOptions={deliveryOptions}
+            cart={cart}
+            loadcart={loadcart}
+          />
 
           <PaymentSummary paymentSummary={paymentSummary} />
         </div>
