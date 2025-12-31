@@ -3,7 +3,7 @@ import { useState, useEffect, Fragment } from "react";
 import "./orders.css";
 import { Header } from "../../components/header.jsx";
 import { OrdersGrid } from "./ordersGrid.jsx";
-export function Orders({ cart }) {
+export function Orders({ cart,loadcart }) {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
     const getOrdersData = async () => {
@@ -21,7 +21,7 @@ export function Orders({ cart }) {
       <div className="orders-page">
         <div className="page-title">Your Orders</div>
 
-        <OrdersGrid orders={orders}/>
+        <OrdersGrid orders={orders} loadcart={loadcart}/>
       </div>
     </>
   );

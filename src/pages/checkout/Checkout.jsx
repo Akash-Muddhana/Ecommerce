@@ -17,11 +17,17 @@ export function Checkout({ cart, loadcart }) {
 
       setDeliveryOptions(response.data);
 
-      response = await axios.get("/api/payment-summary");
-      setPaymentSummary(response.data);
+      
     };
     checkoutData();
-  }, [cart]);
+  }, []);
+  useEffect(()=>{
+    const payment=async()=>{
+      let response= await axios.get("/api/payment-summary");
+      setPaymentSummary(response.data);
+    }
+    payment();
+  },[cart])
   return (
     <>
       <title>Checkout</title>

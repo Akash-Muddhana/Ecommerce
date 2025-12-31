@@ -7,6 +7,7 @@ import { Tracking } from "./pages/tracking/Tracking";
 import { useState, useEffect } from "react";
 import axios from "axios";
 function App() {
+  
   const [cart, setCart] = useState([]);
   const loadcart = async () => {
     const response = await axios.get(
@@ -19,6 +20,7 @@ function App() {
   }, []);
   return (
     <>
+    
       <Routes>
         <Route
           path="/"
@@ -28,7 +30,7 @@ function App() {
           path="checkout"
           element={<Checkout cart={cart} loadcart={loadcart} />}
         />
-        <Route path="orders" element={<Orders cart={cart} />} />
+        <Route path="orders" element={<Orders cart={cart} loadcart={loadcart}/>} />
         <Route path="tracking" element={<Tracking />} />
       </Routes>
     </>
