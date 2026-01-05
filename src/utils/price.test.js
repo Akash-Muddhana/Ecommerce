@@ -5,6 +5,6 @@ describe('format money',()=>{
     expect(formatMoney(1990)).toBe('$19.90')
 })
     it('gives 2 decimal points',()=>{
-        expect(formatMoney(10000)).toBe('$100.00')
+        expect(formatMoney(-999)).toBe('$-9.99')
     })
 })

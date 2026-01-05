@@ -2,10 +2,10 @@ import './header.css'
 import {NavLink} from 'react-router'
 
 export function Header({cart}){
-  let totalquantity=0;
-  cart.forEach(element => {
-    totalquantity+=element.quantity
-  });
+  const totalquantity = Array.isArray(cart)
+  ? cart.reduce((sum, item) => sum + item.quantity, 0)
+  : 0;
+
     return(
         <>
     <div className="header">
